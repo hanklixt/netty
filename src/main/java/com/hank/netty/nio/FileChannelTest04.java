@@ -10,11 +10,11 @@ import java.nio.channels.FileChannel;
  */
 public class FileChannelTest04 {
     public static void main(String[] args) throws Exception {
-
+        //打开输入流
         final FileInputStream fileInputStream = new FileInputStream("1.jpg");
 
         final FileChannel srcChannel = fileInputStream.getChannel();
-
+        //打开输出流
         final FileOutputStream fileOutputStream = new FileOutputStream("2.jpg");
 
         final FileChannel dstChannel = fileOutputStream.getChannel();
