@@ -43,7 +43,6 @@ public class NioServer {
                     //accept方法虽然是阻塞的。但是上面已经做了判断，所以不会阻塞
                     //获取一个socketChannel,new SocketChannelImpl
                     final SocketChannel socketChannel = serverSocketChannel.accept();
-
                     socketChannel.configureBlocking(false);
                     System.out.println("收到客户端连接" + socketChannel.hashCode());
                     //设置当前key对应的通道事件为可读
