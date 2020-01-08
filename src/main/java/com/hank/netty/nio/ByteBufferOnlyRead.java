@@ -17,9 +17,7 @@ public class ByteBufferOnlyRead {
         }
 
         byteBuffer.flip();
-
         final ByteBuffer byteBuffer1 = byteBuffer.asReadOnlyBuffer();
-
         while (byteBuffer.hasRemaining()) {
             System.out.println(byteBuffer.getInt());
         }
