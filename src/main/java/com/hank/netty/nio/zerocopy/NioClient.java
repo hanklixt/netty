@@ -13,7 +13,7 @@ import java.time.Instant;
  */
 public class NioClient {
 
-    static String fileName = "project.zip";
+    static String fileName = "secret_key_tools_RSA_win.zip";
 
     public static void main(String[] args) throws Exception {
         final Instant begin = Instant.now();
@@ -37,11 +37,14 @@ public class NioClient {
         //初始读取的数据大小
         long transferToCount = 0; //这样可以把数据读完
         for (int i = 0; i < count; i++) {
-            transferToCount = filechannel.transferTo(transferToCount, filechannel.size(), socketChannel);
+            System.out.println("这是第" + (i + 1) + "次");
+            transferToCount = filechannel.transferTo(transferToCount, num, socketChannel);
         }
 
         final Instant end = Instant.now();
         System.out.println("测试耗时零拷贝" + Duration.between(begin, end).toMillis());
+
+        System.in.read();
 
     }
 }

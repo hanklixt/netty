@@ -1,9 +1,13 @@
 package com.hank.netty.nio.zerocopy;
 
+import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.util.Set;
 
 /**
  * @author lxt
@@ -13,22 +17,48 @@ import java.nio.channels.SocketChannel;
 public class NioServer {
     public static void main(String[] args) throws Exception {
         final ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
-
+        //获取一个selector
+        final Selector selector = Selector.open();
+        //设置非阻塞
         serverSocketChannel.configureBlocking(false);
 
         serverSocketChannel.socket().bind(new InetSocketAddress(8744));
+
+        serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
+
         final ByteBuffer buffer = ByteBuffer.allocate(4096);
         while (true) {
-            final SocketChannel socketChannel = serverSocketChannel.accept();
-            int read = 0;
-            while (-1 != read) {
-                read = socketChannel.read(buffer);
+            final int select = selector.select(2000);
+            if (select == 0) {
+                continue;
             }
-            /**
-             * position = 0;
-             * mark = -1;
-             */
-            buffer.rewind();
+
+            final Set<SelectionKey> selectionKeys = selector.selectedKeys();
+
+            selectionKeys.forEach(x -> {
+                if (x.isAcceptable()) {
+                    try {
+                        final SocketChannel socketChannel = serverSocketChannel.accept();
+
+                        socketChannel.configureBlocking(false);
+
+                        socketChannel.register(selector, SelectionKey.OP_READ, ByteBuffer.allocate(1024));
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (x.isReadable()) {
+                    System.out.println("..............");
+                    /**
+                     * position = 0;
+                     * mark = -1;
+                     */
+                    buffer.rewind();
+
+                }
+
+            });
 
         }
     }
