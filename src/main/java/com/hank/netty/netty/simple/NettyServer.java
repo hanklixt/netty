@@ -41,7 +41,7 @@ public class NettyServer {
             //绑定端口设置为同步
             final ChannelFuture cf = bootstrap.bind(6668).sync();
             //监听关闭的端口
-            cf.channel().closeFuture().sync();
+            ChannelFuture sync = cf.channel().closeFuture().sync();
         } finally {
             workGroups.shutdownGracefully();
 

@@ -2,6 +2,7 @@ package com.hank.netty.nio;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
@@ -11,7 +12,9 @@ import java.nio.channels.FileChannel;
  */
 public class FileChannelTest02 {
     public static void main(String[] args) throws Exception {
-        final File file = new File("E:\\file01.txt");
+        final File file = new File("C:\\Users\\HASEE\\Desktop\\新建文本文档.txt");
+
+
 
         final FileInputStream fileInputStream = new FileInputStream(file);
 

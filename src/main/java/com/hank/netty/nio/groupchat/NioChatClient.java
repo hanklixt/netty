@@ -18,7 +18,7 @@ public class NioChatClient {
     private Selector selector;
     private SocketChannel socketChannel;
     private String userName;
-    private Integer PORT = 1112;
+    private Integer PORT = 6000;
 
     //客户端初始化工作
     public NioChatClient() throws IOException {
@@ -34,6 +34,7 @@ public class NioChatClient {
         socketChannel.register(selector, SelectionKey.OP_READ);
         userName = socketChannel.getRemoteAddress() + "::";
         System.out.println("客户端初始化成功");
+        sendMsg("hahah");
     }
 
     /**
@@ -99,7 +100,7 @@ public class NioChatClient {
             final String msg = scanner.nextLine();
             nioChatClient.sendMsg(msg);
         }
-
     }
+
 
 }

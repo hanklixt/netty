@@ -60,6 +60,9 @@ public class NioChatServer {
                         //设置关心事件为可读
                         socketChannel.register(selector, SelectionKey.OP_READ, ByteBuffer.allocate(512));
                     }
+                    selectionKey.isConnectable();
+                    selectionKey.isWritable();
+                    selectionKey.isValid();
                     //读事件
                     if (selectionKey.isReadable()) {
                         readData(selectionKey);
