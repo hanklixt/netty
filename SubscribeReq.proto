@@ -1,0 +1,10 @@
+package netty;
+option java_package="com.hank.news.netty.protobuf";
+option java_outer_classname="SubscribeReqProto";
+
+message SubscribeReq{
+required int32 subReqId=1;
+required string userName=2;
+required string produceName=3;
+repeated string address=4;
+}
