@@ -11,7 +11,7 @@ public class MarshallingEncoder {
 
     private static final byte[] length_placeholder=new byte[4];
 
-    private Marshaller  marshaller;
+    private final Marshaller  marshaller;
 
     public MarshallingEncoder() throws IOException {
     this.marshaller= MarshallingCodeCFactory.buildMarshalling();
@@ -23,6 +23,7 @@ public class MarshallingEncoder {
         //返回可写的第一个数组索引
         int lengthPos = out.writerIndex();
 
+        //写入4个空自己，用于解码时判断
         out.writeBytes(length_placeholder);
 
         ChannelBufferByteOutPut outPut = new ChannelBufferByteOutPut(out);

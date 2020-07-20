@@ -29,5 +29,8 @@ public class HeartBeatRespHandler extends ChannelInboundHandlerAdapter {
 
     }
 
-
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        ctx.close();
+    }
 }

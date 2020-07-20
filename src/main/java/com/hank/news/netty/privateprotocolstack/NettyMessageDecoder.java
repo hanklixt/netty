@@ -12,6 +12,7 @@ public class NettyMessageDecoder  extends LengthFieldBasedFrameDecoder {
     private final MarshallingDecoder marshallingDecoder;
 
     public NettyMessageDecoder(int maxFrameLength, int lengthFieldOffset, int lengthFieldLength) throws IOException {
+        //调用父类构造指定半包处理
         super(maxFrameLength, lengthFieldOffset, lengthFieldLength);
        this.marshallingDecoder=new MarshallingDecoder();
     }
@@ -57,6 +58,8 @@ public class NettyMessageDecoder  extends LengthFieldBasedFrameDecoder {
             header.setAttachment(map);
         }
         int i = in.readInt();
+
+        //由于编码时再放body时加了4个空字节，所以根据这个条件来进行判断，是否有body
         if (i>4){
             Object body = marshallingDecoder.decode(in);
             message.setBody(body);

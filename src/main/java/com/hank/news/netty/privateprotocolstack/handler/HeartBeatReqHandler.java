@@ -36,7 +36,7 @@ public class HeartBeatReqHandler  extends ChannelInboundHandlerAdapter {
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        super.exceptionCaught(ctx, cause);
+        ctx.close();
     }
 
     private class HeartBeatTask implements Runnable{
