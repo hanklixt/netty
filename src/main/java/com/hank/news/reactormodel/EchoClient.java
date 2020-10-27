@@ -18,9 +18,13 @@ import java.util.Set;
 public class EchoClient {
     public void start() throws IOException {
 
+//        InetSocketAddress address =
+//                new InetSocketAddress("localhost",
+//                        5223);
+
         InetSocketAddress address =
                 new InetSocketAddress("localhost",
-                        5223);
+                        8774);
 
         // 1、获取通道（channel）
         SocketChannel socketChannel = SocketChannel.open(address);
