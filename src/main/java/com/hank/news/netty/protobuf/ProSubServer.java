@@ -59,7 +59,6 @@ public class ProSubServer {
                 });
         try {
             ChannelFuture future = bootstrap.bind(7777).sync();
-
             future.channel().closeFuture().sync();
         } catch (InterruptedException e) {
             e.printStackTrace();

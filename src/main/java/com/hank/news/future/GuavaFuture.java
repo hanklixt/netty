@@ -3,9 +3,9 @@ package com.hank.news.future;
 import com.google.common.util.concurrent.*;
 
 import java.util.concurrent.Callable;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.FutureTask;
 
 /**
  * @author lxt
@@ -19,6 +19,7 @@ public class GuavaFuture {
         @Override
         public Boolean call() throws Exception {
             System.out.println("打水");
+            Thread.sleep(500);
             System.out.println("加水");
             System.out.println("放到火上烧");
             return true;
@@ -30,6 +31,7 @@ public class GuavaFuture {
 
         @Override
         public Boolean call() throws Exception {
+            Thread.sleep(500);
             System.out.println("找茶具");
             System.out.println("洗茶具");
             System.out.println("晾干");
@@ -86,12 +88,18 @@ public class GuavaFuture {
         //获取烧水future
         ListenableFuture<Boolean> hotWaterFuture = listenPool.submit(hotWaterJob);
 
-        //烧水任务完成后添加回调和异常处理
+
+        //烧水任务完成后添加回调和异常处理,是阻塞的，会调用 FutureTask 的 get 方法,但是执行回调和异常处理时是不阻塞的
         Futures.addCallback(hotWaterFuture, new FutureCallback<Boolean>() {
             @Override
             public void onSuccess(Boolean aBoolean) {
                  if (aBoolean)
                      mainJob.warterOk=true;
+                 try {
+                     Thread.sleep(500);
+                 }catch (Exception e){
+                     e.printStackTrace();
+                 }
                      System.out.println("水烧开了");
             }
 
