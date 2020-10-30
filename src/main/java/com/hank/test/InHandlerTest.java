@@ -4,6 +4,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.embedded.EmbeddedChannel;
+import io.netty.handler.codec.ByteToMessageDecoder;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -11,9 +12,9 @@ import org.junit.jupiter.api.Test;
  * @create 2020-10-28 15:40
  */
 public class InHandlerTest {
-
     @Test
    public void   testInHandlerLifeCircle(){
+
         InHandlerDemo inHandlerDemo = new InHandlerDemo();
 
         ChannelInitializer<EmbeddedChannel> initializer = new ChannelInitializer<EmbeddedChannel>() {
