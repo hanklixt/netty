@@ -1,4 +1,4 @@
-package com.hank.sharableHandler;
+package com.hank.news.sharableHandler;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
