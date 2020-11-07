@@ -1,0 +1,12 @@
+syntax="proto3";
+
+package com.hank.news.protopojo;
+
+option java_package ="com.hank.news.protopojo";
+option java_outer_classname="MsgProto";
+
+message MsgP{
+  uint32 id=1;
+  string content=2;
+}
+
