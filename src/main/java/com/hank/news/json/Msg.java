@@ -1,4 +1,4 @@
-package com.hank.news.proto;
+package com.hank.news.json;
 
 import lombok.Data;
 

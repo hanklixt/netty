@@ -1,4 +1,4 @@
-package com.hank.news.proto;
+package com.hank.news.json;
 
 
 import com.hank.news.util.JsonUtil;
@@ -11,8 +11,6 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LengthFieldPrepender;
 import io.netty.handler.codec.string.StringEncoder;
 import lombok.extern.slf4j.Slf4j;
-
-import java.net.InetAddress;
 
 /**
  * @author lxt

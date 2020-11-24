@@ -1,4 +1,4 @@
-package com.hank.news.proto;
+package com.hank.news.json;
 
 import com.hank.news.util.JsonUtil;
 import io.netty.bootstrap.ServerBootstrap;
